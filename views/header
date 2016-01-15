@@ -1,0 +1,7 @@
+        <div id="header">
+            <div id="header_account">
+                <a ng-click="expand = !expand" href="#">MY ACCOUNT</a>
+            </div>
+            <p class="slide1" ng-show="expand">Login signup byebye</p>
+
+        </div>

@@ -1,0 +1,366 @@
+<!-- Content Display -->
+<div id="content_display" ng-controller="productController">
+
+    <!-- Breadcrumbs -->
+    <div id="product_breadcrumbs">
+        <ol class="breadcrumb">
+            <li><a href="#/home">Home</a></li>
+            <li>{{product_category}}</li>
+        </ol>
+    </div>
+    <!-- End Breadcrumbs -->
+    <!--  Product filters start -->
+    <div class="product_filter">
+        <div class="product_filter_options">
+            <select name="filter_category" id="filter_category">
+                <option value="1">Tshirt</option>
+                <option value="2">Jeans</option>
+                <option value="3">Shirts</option>
+                <option value="4">Shorts</option>
+            </select>
+        </div>
+
+        <div class="product_filter_options">
+            <div class="product_filter_header text-center">Shop By Category</div>
+            <ul class="filter_sub_category_ul">
+                <li ng-repeat="type in filters.Category">
+                    <input id="{{type.name}}" type="checkbox" value="{{type.name}}" ng-click="" />
+                        {{ type.name }}
+                </li>
+            </ul>
+        </div>
+
+        <div class="product_filter_options">
+            <div class="product_filter_header text-center">Shop By Price</div>
+            <div id="product_filter_price">
+            <div class="layout-slider">
+     <span><input id="Slider1" type="slider" name="price" value="0;10000" /></span> 
+    </div>
+                
+            </div>
+        </div>
+
+        <!-- <div class="product_filter_options product_filter_options1">
+            <div class="product_filter_header text-center">Shop By Colour</div>
+            <ul class="filter_colour_ul">
+                <li>
+                    <input type="checkbox" id="brown" name="color" />
+                    <label for="brown"><span class="brown quickview_color"></span></label>
+                </li>
+            </ul>
+        </div> -->
+
+        <div class="product_filter_options" ng-repeat="(key,filter) in filters" ng-if="key!='Category'">
+            <div class="product_filter_header text-center">Shop By {{ key }}</div>
+            <ul class="filter_brand_ul">
+                <li ng-repeat="x in filter">
+                    <!-- <input type="checkbox" name="{{'filter_' + key}}" id="{{'filter_' + key}}"> -->
+                    <span ng-if="x.hasOwnProperty('name')">
+                        <input id="{{x.name}}" type="checkbox" value="{{x.name}}" ng-click="toggleSelection(x.name, key)" />
+                        {{ x.name }}
+                    </span>
+                    <span ng-if="x.hasOwnProperty('sub_type')">
+                        <input id="{{x.sub_type}}" type="checkbox" value="{{x.type}}" ng-click="toggleSelection(x.sub_type, 'sub_categories')" />
+                        {{ x.sub_type }}
+                    </span>
+                    <!-- <span class="filter_product_count">(145)</span> -->
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--  Product filters end -->
+
+    <!-- mobile Product filters start -->
+    <div class="mobile_product_refine">
+        <div class="mobile_product_filter">
+         <a href="#" data-toggle="modal" data-target="#mobile_filter_modal">          <span class="glyphicon glyphicon-filter"></span>
+  Filter
+            </a>
+
+            <div class="modal fade" id="mobile_filter_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal_full_dialog">
+                    <div class="modal-content modal_full_content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Filter</h4>
+                        </div>
+                        <div class="modal-body">
+                             <div class="product_filter_options">
+            <select name="filter_category" id="filter_category">
+                <option value="1">Tshirt</option>
+                <option value="2">Jeans</option>
+                <option value="3">Shirts</option>
+                <option value="4">Shorts</option>
+            </select>
+        </div>
+
+        <div class="product_filter_options">
+            <div class="product_filter_header text-center">Shop By Category</div>
+            <ul class="filter_sub_category_ul">
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Polos
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> TShirts
+                    <span class="filter_product_count">(145)</span></li>
+            </ul>
+        </div>
+
+        <div class="product_filter_options">
+            <div class="product_filter_header text-center">Shop By Price</div>
+            <div id="product_filter_price">
+                <div range-slider min="0" max="100" model-min="demo1.min" model-max="demo1.max"></div>
+            </div>
+        </div>
+
+        <div class="product_filter_options">
+            <div class="product_filter_header text-center">Shop By Brand</div>
+            <ul class="filter_brand_ul">
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Allen Solly
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Lee
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Flying Machine
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Louis Phillipe
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Wrangler
+                    <span class="filter_product_count">(145)</span></li>
+            </ul>
+        </div>
+
+        <div class="product_filter_options">
+            <div class="product_filter_header text-center">Shop By Size</div>
+            <ul class="filter_size_ul">
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> S
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> M
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> L
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> XL
+                    <span class="filter_product_count">(145)</span></li>
+            </ul>
+        </div>
+
+        <div class="product_filter_options">
+            <div class="product_filter_header text-center">Shop By Colour</div>
+            <ul class="filter_colour_ul">
+                <li>
+                    <input type="radio" id="brown" name="color" />
+                    <label for="brown"><span class="brown quickview_color"></span></label>
+                </li>
+                <li>
+                    <input type="radio" id="red" name="color" />
+                    <label for="red"><span class="red quickview_color"></span></label>
+                </li>
+                <li>
+                    <input type="radio" id="brown" name="color" />
+                    <label for="brown"><span class="brown quickview_color"></span></label>
+                </li>
+                <li>
+                    <input type="radio" id="brown" name="color" />
+                    <label for="brown"><span class="brown quickview_color"></span></label>
+                </li>
+                <li>
+                    <input type="radio" id="brown" name="color" />
+                    <label for="brown"><span class="brown quickview_color"></span></label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="product_filter_options">
+            <div class="product_filter_header text-center">Shop By Design</div>
+            <ul class="filter_design_ul">
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Patterns
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Printed
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Solids
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Stripes
+                    <span class="filter_product_count">(145)</span></li>
+            </ul>
+        </div>
+
+        <div class="product_filter_options">
+            <div class="product_filter_header text-center">Shop By Sleeve</div>
+            <ul class="filter_sleeve_ul">
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Half
+                    <span class="filter_product_count">(145)</span></li>
+                <li>
+                    <input type="checkbox" name="filter_sub_category" id="filter_sub_category"> Full
+                    <span class="filter_product_count">(145)</span></li>
+            </ul>
+        </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Clear Filters</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile_product_sort">
+            <span class="glyphicon glyphicon-sort-by-attributes-alt">SORT BY</span>
+            <select>
+            <option value="LowtoHigh">Low to High</option>
+                 <option value="HightoLow">High to Low</option>
+            </select>
+        </div>
+    </div>
+    <!-- mobile Product filters end -->
+    <div class="product_particulars">
+        <!-- Product Header -->
+        <div id="product_title">
+            <h3>{{product_category | uppercase}}</h3>
+            <span class="product_sort_by">Sort By:
+            <select name="sort_by" class="sort_by">
+                <option value="1">Popular</option>
+                <option value="2">Low Price</option>
+                <option value="3">High Price</option>
+                <option value="4">Newest</option>
+            </select>
+        </span>
+            <p id="product_description">You can optionally swap out active or disabled anchors for, or omit the anchor in the case of the previous/next arrows, to remove click functionality while retaining intended styles.</p>
+        </div>
+        <!-- End Product header -->
+
+        <!-- Quickview -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content modal_content_quickview">
+
+                    <!-- Quickview Header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Product Quickview</h4>
+                    </div>
+                    <!-- End Quickview header -->
+
+                    <!-- Quickview Body -->
+                    <div class="modal-body">
+
+                        <!-- Quickview Slide -->
+                        <div id="quickview_gallery">
+                            <div id="myCarousel" class="carousel slide">
+                                <!-- Carousel indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                </ol>
+                                <!-- Wrapper for carousel items -->
+                                <div class="carousel-inner">
+                                    <div class="active item">
+                                        <img class="quickview_resize" src="{{ quickview_product.img_url }}" class="quickview_resize" alt="First Slide">
+                                    </div>
+                                    <div class="item">
+                                        <img class="quickview_resize" src="assets/images/p2.jpg" class="quickview_resize" alt="Second Slide">
+                                    </div>
+                                    <div class="item">
+                                        <img class="quickview_resize" src="assets/images/p3.jpg" class="quickview_resize" alt="Third Slide">
+                                    </div>
+                                </div>
+                                <!-- Carousel controls -->
+                                <div id="carousel_indicator">
+                                    <a class="remove_carousel_gradient carousel-control left" href="#myCarousel" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                    </a>
+                                    <a class="remove_carousel_gradient carousel-control right" href="#myCarousel" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Quickview Slide -->
+
+                        <!-- Quickview Details -->
+                        <div id="quickview_details">
+                            <div id="quickview_product_name">
+                                <h2>{{ quickview_product.name }}</h2></div>
+
+                            <div id="quickview_product_price">
+                                <h4>{{ quickview_product.unit_price }}</h4></div>
+                            <div id="quickview_product_color">
+                                <h5>Colour</h5>
+                                <input type="radio" id="brown" name="color" />
+                                <label for="brown"><span class="brown quickview_color"></span></label>
+
+
+                                <input type="radio" id="red" name="color" />
+                                <label for="red"><span class="red quickview_color"></span></label>
+
+                            </div>
+
+                            <div id="quickview_product_size">
+                                Size
+                                <select name="product_size">
+                                    <option ng-repeat="size in quickview_product.size" value="{{ size.name }}">{{ size.name }}</option>
+                                </select>
+                            </div>
+
+                            <div id="quickview_product_quantity">
+                                Quantity:
+                                <select>
+                                    <option ng-repeat="n in [] | range:quickview_product.stock" value="{{ $index }}">{{ $index + 1 }}</option>
+                                </select>
+                            </div>
+
+                            <div id="quickview_product_add">
+                                <button type="button" class="btn btn-default">ADD TO CART</button>
+                                <br />
+                                <br />
+                                <a href="#">ADD TO WISHLIST</a>
+                            </div>
+                        </div>
+                        <!-- End Quickview Details -->
+
+                    </div>
+                    <!-- End Quickview Body -->
+
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+
+        <!-- Products list -->
+        <div id="product_display">
+
+            <!-- Dynamic Product list -->
+            <div id="product_display_element" ng-repeat="product in products">
+                
+                <a href="{{ product_type + '/' + product_category + '/' + product.id }}"><img class="product_display_image" src="{{ product.img_url }}"></a>
+                <button type="button" class="btn btn-info btn-sm quickview_button" data-toggle="modal" data-target="#myModal" ng-click="loadQuickview(product.id)">Quickview</button>
+                <div class="product_display_description">
+                    <div class="product_display_description_name text-center">{{ product.name }}</div>
+                    <div class="product_display_description_price text-center">{{ "Rs. " + product.unit_price }}</div>
+                </div>
+            </div>
+            <!-- End Dynamic Product list -->
+
+           
+        </div>
+        <!-- End Products list -->
+
+    </div>
+
+</div>
+<!-- End Content Display -->

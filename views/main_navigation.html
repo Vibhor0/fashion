@@ -1,0 +1,53 @@
+<!-- Left Navigation -->
+<div id="navigation">
+
+    <div class="navigation_highlights">
+        <span class="navigation_heading">
+                        HIGHLIGHTS
+        </span>
+        <div class="navigation_content">
+            <a href="#">
+                <div class="navigation_highlights_list">Home</div>
+            </a>
+            <div class="navigation_list">
+            <accordion close-others="oneAtATime">
+                <accordion-group heading="{{kids_groups[0].title}}">
+                    <div ng-repeat="content in kids_groups[0].contents">
+                        <a href="#">{{content}}</a>
+                        <br />
+                    </div>
+                </accordion-group>
+            </accordion>
+        </div>
+            <a href="#">
+                <div class="navigation_highlights_list">Men</div>
+            </a>
+            <a href="#">
+                <div class="navigation_highlights_list">Women</div>
+            </a>
+            <a href="#">
+                <div class="navigation_highlights_list">Brands</div>
+            </a>
+        </div>
+    </div>
+    <div class="navigation_category">
+        <span class="navigation_heading">
+        SHOP BY CATEGORY
+        </span>
+        <div class="navigation_content">
+            <accordion close-others="oneAtATime">
+                <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+                    <div ng-repeat="content in group.contents">
+                        <a href="#">{{content}}</a>
+                        <br />
+                    </div>
+                </accordion-group>
+            </accordion>
+        </div>
+    </div>
+
+</div>
+<!-- End navigation -->
+
+<!-- Angular view - Content -->
+<div ui-view></div>

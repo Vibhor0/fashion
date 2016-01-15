@@ -1,0 +1,103 @@
+<!-- Content Display -->
+<div id="content_display">
+    <div class="row content_category">
+        <div class="col-md-4" category_content>
+        </div>
+        <div class="col-md-2 no-padding">
+            <a ui-sref="main_navigation.men">
+                <div class="category_image">
+                    <img class="resize" src="assets/images/PHOTO%2017-MEN.jpg">
+                </div>
+            </a>
+            <div class="content_categoryMen">
+                <img class="resize" src="assets/images/PHOTO%201.jpg">
+            </div>
+        </div>
+        <div class="col-md-2 no-padding">
+            <a ui-sref="main_navigation.women">
+                <div>
+                    <img class="resize" src="assets/images/PHOTO%2017-WOMEN.jpg">
+                </div>
+            </a>
+            <div class="content_categoryMen">
+                <img class="resize" src="assets/images/PHOTO%202.jpg">
+            </div>
+        </div>
+        <div class="col-md-2 no-padding">
+            <a ui-sref="main_navigation.kids">
+                <div>
+                    <img class="resize" src="assets/images/PHOTO%2017-KIDS.jpg">
+                </div>
+            </a>
+            <div class="content_categoryMen">
+                <img class="resize" src="assets/images/PHOTO%203.jpg">
+            </div>
+        </div>
+        <div class="col-md-2 no-padding">
+            <div>
+                <img class="resize" src="assets/images/PHOTO%2017-OFFER.jpg">
+            </div>
+            <div class="content_categoryMen">
+                <img class="resize" src="assets/images/PHOTO%204.jpg">
+            </div>
+        </div>
+    </div>
+    <!-- End Category -->
+    <!-- Slide -->
+    <div id="content_slide">
+        <div class="bs-example">
+            <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+                <!-- Carousel indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for carousel items -->
+                <div class="carousel-inner">
+                    <div class="active item">
+                        <img class="resize" src="assets/images/menslide.jpg" alt="Second Slide">
+                        <div class="carousel-caption">
+                            <h3>Second slide label</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="resize" src="assets/images/kidslide.jpg" alt="Second Slide">
+                        <div class="carousel-caption">
+                            <h3>Second slide label</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="resize" src="assets/images/womenslide.jpg" alt="Third Slide">
+                        <div class="carousel-caption">
+                            <h3>Third slide label</h3>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel controls -->
+                <a class="remove_carousel_gradient carousel-control left" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="remove_carousel_gradient carousel-control right" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Slide -->
+    <div id="content_brands">
+        <h3>Shop By Brand</h3>
+        <hr />
+        <div class="home_brands" ng-repeat-start="brand in brands">
+            <a href="#"><img class="brand_image" src={{brand}}></a>
+        </div>
+        <!-- End Dynamic Product list -->
+        <div ng-if="$index % 4 == 3 && $index > 3" ng-repeat-end>
+            <br />
+        </div>
+    </div>
+</div>
+<!-- End Content Display -->
