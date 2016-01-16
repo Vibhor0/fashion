@@ -7,30 +7,30 @@
 
 
                 <span class="cart_total">
-            <h5>TOTAL&#8377 7800</h5>
+            <h5>TOTAL&#8377 {{ price }}</h5>
         </span>
             </div>
             <hr>
-            <div class="cart_particulars">
+            <div class="cart_particulars" ng-repeat="product in cart_list">
                 <div class="cart_particulars_image">
-                    <img class="img-responsive cart_particulars_icon" src="assets/images/p1.jpg">
+                    <img class="img-responsive cart_particulars_icon" src="{{ product.product.img_url }}">
                 </div>
                 <div class="cart_particulars_details">
                     <span class="cart_particulars_brandname">
-                <h4>US POLO ASSN</h4>
+                <h4>{{ product.product.name }}</h4>
                 </span>
                     <span class="cart_particulars_brandname">
-              5 Pocket Jeans Slim Fit
+              {{ product.product.brand.name }}
                 </span>
                     <div class="cart_particulars_details1">
                         <span class="cart_particulars_color">
                     colour:Blue
                 </span>
                         <span class="cart_particulars_quantity">
-                   Quantity:1
+                   {{ "Quantity: " + product.quantity }}
                     </span>
                         <span class="cart_particulars_size">
-                    Size:30
+                    {{ "Size: " + product.size }}
                 </span>
                     </div>
                 </div>
@@ -39,41 +39,11 @@
                     <span class="cart_particulars_remove">Remove</span>
                 </div>
                 <div class="cart_particulars_amount">
-                    &#8377 7800
+                    &#8377 {{ product.price }}
                 </div>
             </div>
             <hr>
-            <div class="cart_particulars">
-                <div class="cart_particulars_image">
-                    <img class="img-responsive cart_particulars_icon" src="assets/images/p1.jpg">
-                </div>
-                <div class="cart_particulars_details">
-                    <span class="cart_particulars_brandname">
-                <h4>US POLO ASSN</h4>
-                </span>
-                    <span class="cart_particulars_brandname">
-              5 Pocket Jeans Slim Fit
-                </span>
-                    <div class="cart_particulars_details1">
-                        <span class="cart_particulars_color">
-                    colour:Blue
-                </span>
-                        <span class="cart_particulars_quantity">
-                   Quantity:1
-                    </span>
-                        <span class="cart_particulars_size">
-                    Size:30
-                </span>
-                    </div>
-                </div>
-                <div class="cart_particulars_removebutton">
-                    <span class="glyphicon glyphicon-remove"></span>
-                    <span class="cart_particulars_remove">Remove</span>
-                </div>
-                <div class="cart_particulars_amount">
-                    &#8377 7800
-                </div>
-            </div>
+            
 
         </div>
         <div class="col-md-4">
@@ -96,7 +66,7 @@
             Sub Total
                 </span>
                     <span class="cart_subtotal_price">
-            &#8377 7800
+            &#8377 {{ price }}
                 </span>
                 </div>
                 <div class="cart_particulars_delivery">
@@ -122,7 +92,7 @@
             Payable Amount
             </span>
                     <span class="cart_payable_price">
-            &#8377 7800
+            &#8377 {{ price }}
                 </span>
 
                 </div>

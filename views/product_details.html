@@ -4,9 +4,10 @@
 
         <!-- Breadcrumbs -->
         <ol class="breadcrumb breadcrumb_background">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li class="active">Product Details</li>
+            <li><a ui-sref="main_navigation.home">Home</a></li>
+            <li><a href="#">{{ product_type }}</a></li>
+            <li><a href="/{{ product_type }}/{{ product_category }}">{{ product_category }}</a></li>
+            <li class="active"><a href="#">{{ product.name }}</a></li>
         </ol>
         <!-- End Breadcrumbs -->
 
@@ -92,7 +93,7 @@
                     </div>
                     <!-- End Select Color -->
                     <span class="product_details_size">
-            <h5>Size :   <select>
+            <h5>Size :   <select id="product_details_size">
   <option ng-repeat="size in product.size" value="{{ size.name }}">{{ size.name }}</option>
 
 </select>
@@ -104,7 +105,7 @@
             <h5>only {{ product.stock }} items left</h5>
             </span>
                     <span class="product_details_no_of_quantity">
-            <h5>Quantity :   <select>
+            <h5>Quantity :   <select id="product_details_quantity">
   <option ng-repeat="n in [] | range:product.stock" value="{{ $index }}">{{ $index + 1 }}</option>
 </select>
 
@@ -112,7 +113,7 @@
 
                     <!-- Buttons -->
                     <div id="product_details_add">
-                        <button type="button" class="btn btn-default product_details_button">ADD TO CART</button>
+                        <button type="button" class="btn btn-default product_details_button" id="details_addCart">ADD TO CART</button>
                         <button type="button" class="btn btn-default product_details_button">ADD TO WISHLIST</button>
                     </div>
                     <!-- End Buttons -->

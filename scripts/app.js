@@ -107,6 +107,25 @@ midway.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
 
 .controller('productController', function ($scope, $stateParams, $http) {
+
+    var cart_button = document.getElementById('addCart_quickview');
+    cart_button.addEventListener('click', function (e) {
+        var id = this.previousElementSibling.innerHTML;
+        var size = document.getElementById('product_size').value
+        var quantity = document.getElementById('product_quantity').value
+        var url = "http://127.0.0.1:8000/api/add_to_cart/";
+        var data = {
+            'product_id': id,
+            'size': size,
+            'quantity': quantity
+        }
+
+        $http.post(url, JSON.stringify(data)).
+        success(function (response) {
+            console.log(response);
+        })
+    })
+
     $scope.demo1 = {
         min: 20,
         max: 80
@@ -201,13 +220,46 @@ midway.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         .success(function (response) {
             $scope.product = response;
         });
+    
+    var cart_button = document.getElementById('details_addCart');
+    cart_button.addEventListener('click', function (e) {
+        var size = document.getElementById('product_details_size').value
+        var quantity = document.getElementById('product_details_quantity').value
+        var url = "http://127.0.0.1:8000/api/add_to_cart/";
+        var data = {
+            'product_id': $scope.product_id,
+            'size': size,
+            'quantity': quantity
+        }
+
+        $http.post(url, JSON.stringify(data)).
+        success(function (response) {
+            console.log(response);
+        })
+    })
 
 })
 
-.controller('cartController', function ($scope) {
+.controller('cartController', function ($scope, $http) {
     $scope.footerWidth = {
         'width': '100%'
     }
+    
+    var cart_url = "http://127.0.0.1:8000/api/cart";
+    var data = {
+        'user': 'admin'
+    }
+    
+    $http.get(cart_url)
+        .then(function (response) {
+            $scope.cart_list = response.data;
+            $scope.price = 0;
+        console.log(response.data)
+            for(var i=0; i<$scope.cart_list.length; i++) {
+                $scope.price += $scope.cart_list[i].price
+                console.log($scope.cart_list[i].price)
+            }
+        })
 })
 
 .controller('indexController', function ($scope, $stateParams, $http) {
@@ -215,7 +267,23 @@ midway.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $http.get('http://127.0.0.1:8000/api/token').success(function (data, status) {
         jwt_token = data.token;
     })
+
+    var cart_url = "http://127.0.0.1:8000/api/cart";
+    var data = {
+        'user': 'admin'
+    }
     
+    $http.get(cart_url)
+        .then(function (response) {
+            $scope.cart_list = response.data;
+            $scope.price = 0;
+        console.log(response.data)
+            for(var i=0; i<$scope.cart_list.length; i++) {
+                $scope.price += $scope.cart_list[i].price
+                console.log($scope.cart_list[i].price)
+            }
+        })
+
     $http.get("http://127.0.0.1:8000/api/categories")
         .then(function (response) {
             //$scope.filters = response.data;
@@ -224,20 +292,19 @@ midway.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             $scope.boys = response.data.Boys;
             $scope.girls = response.data.Girls;
             $scope.accessories = response.data.Accessories;
-        
+
             console.log(response.data);
         });
 
     var hidden_el = document.getElementsByClassName("hidden-content"),
         control_el = document.getElementsByClassName("toggle-content");
-    var cart = document.getElementsByClassName("cart_slide");
+    var cart = document.getElementsByClassName("cart_slide")[0];
 
 
 
     // Get the elements
     hidden_el = hidden_el[0];
     control_el = control_el[0];
-    cart = cart[0];
 
     var showHide = function () {
         var element_classes = (" " + hidden_el.className + " ").replace(/[\n\t\r]/g, " "),

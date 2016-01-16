@@ -202,7 +202,7 @@
                                         <h5>CLOTHING</h5>
                                         <ul class="dropdown_ul">
                                             <li class="dropdown_li" ng-repeat="catg in men.Clothing">
-                                                <a href="/men/{{ catg }}">{{ catg }}</a>
+                                                <a href="/men/{{ catg | lowercase }}">{{ catg }}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -210,7 +210,7 @@
                                         <h5>ACCESSORIES</h5>
                                         <ul class="dropdown_ul">
                                             <li class="dropdown_li" ng-repeat="catg in men.Accessories">
-                                                <a href="/men/{{ catg }}">{{ catg }}</a>
+                                                <a href="/men/{{ catg | lowercase }}">{{ catg }}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -223,7 +223,7 @@
                                         <h5>CLOTHING</h5>
                                         <ul class="dropdown_ul">
                                             <li class="dropdown_li" ng-repeat="catg in women.Clothing">
-                                                <a href="/women/{{ catg }}">{{ catg }}</a>
+                                                <a href="/women/{{ catg | lowercase }}">{{ catg }}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -231,7 +231,7 @@
                                         <h5>ACCESSORIES</h5>
                                         <ul class="dropdown_ul">
                                             <li class="dropdown_li" ng-repeat="catg in women.Accessories">
-                                                <a href="/women/{{ catg }}">{{ catg }}</a>
+                                                <a href="/women/{{ catg | lowercase }}">{{ catg }}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -246,7 +246,7 @@
                                             <h5>BOYS CLOTHING</h5>
                                             <ul class="dropdown_ul">
                                                 <li class="dropdown_li" ng-repeat="catg in boys.Clothing">
-                                                    <a href="/boys/{{ catg }}">{{ catg }}</a>
+                                                    <a href="/boys/{{ catg | lowercase }}">{{ catg }}</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -254,7 +254,7 @@
                                             <h5>BOYS ACCESSORIES</h5>
                                             <ul class="dropdown_ul">
                                                 <li class="dropdown_li" ng-repeat="catg in boys.Accessories">
-                                                    <a href="/boys/{{ catg }}">{{ catg }}</a>
+                                                    <a href="/boys/{{ catg | lowercase }}">{{ catg }}</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -265,7 +265,7 @@
                                             <h5>GIRLS CLOTHING</h5>
                                             <ul class="dropdown_ul">
                                                 <li class="dropdown_li" ng-repeat="catg in girls.Clothing">
-                                                    <a href="/girls/{{ catg }}">{{ catg }}</a>
+                                                    <a href="/girls/{{ catg | lowercase }}">{{ catg }}</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -273,7 +273,7 @@
                                             <h5>GIRLS ACCESSORIES</h5>
                                             <ul class="dropdown_ul">
                                                 <li class="dropdown_li" ng-repeat="catg in girls.Accessories">
-                                                    <a href="/girls/{{ catg }}">{{ catg }}</a>
+                                                    <a href="/girls/{{ catg | lowercase }}">{{ catg }}</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -287,7 +287,7 @@
                                         <h5>MEN</h5>
                                         <ul class="dropdown_ul">
                                             <li class="dropdown_li" ng-repeat="catg in accessories.Men">
-                                                    <a href="/men/{{ catg }}">{{ catg }}</a>
+                                                    <a href="/men/{{ catg | lowercase }}">{{ catg }}</a>
                                                 </li>
                                         </ul>
                                     </div>
@@ -295,7 +295,7 @@
                                         <h5>WOMEN</h5>
                                         <ul class="dropdown_ul">
                                             <li class="dropdown_li" ng-repeat="catg in accessories.Women">
-                                                    <a href="/women/{{ catg }}">{{ catg }}</a>
+                                                    <a href="/women/{{ catg | lowercase }}">{{ catg }}</a>
                                                 </li>
                                         </ul>
                                     </div>
@@ -303,7 +303,7 @@
                                         <h5>BOYS</h5>
                                         <ul class="dropdown_ul">
                                             <li class="dropdown_li" ng-repeat="catg in accessories.Boys">
-                                                    <a href="/boys/{{ catg }}">{{ catg }}</a>
+                                                    <a href="/boys/{{ catg | lowercase }}">{{ catg }}</a>
                                                 </li>
                                         </ul>
                                     </div>
@@ -311,7 +311,7 @@
                                         <h5>GIRLS</h5>
                                         <ul class="dropdown_ul">
                                             <li class="dropdown_li" ng-repeat="catg in accessories.Girls">
-                                                    <a href="/girls/{{ catg }}">{{ catg }}</a>
+                                                    <a href="/girls/{{ catg | lowercase }}">{{ catg }}</a>
                                                 </li>
                                         </ul>
                                     </div>
@@ -554,16 +554,16 @@
             </div>
         </div>
         <!--Cart Slide-->
-        <div class="cart_slide hidden-content slide-up">
+        <div class="cart_slide hidden-content slide-up" ng-controller="indexController">
             <div id="cart_products_slide">
                 <ul class="cart_ul_slide">
-                    <li class="cart_list_slide">
+                    <li class="cart_list_slide" ng-repeat="product in cart_list">
                         <div class="cart_image_slide">
-                            <img class="cart_product_icon" src="assets/images/p1.jpg">
+                            <img class="cart_product_icon" src="{{ product.product.img_url }}">
                         </div>
                         <div class="cart_details_slide">
                             <div class="cart_product_name_slide">
-                                Brand Print Slim Fit T-Shirt
+                                {{ product.product.name }}
                             </div>
                             <div class="cart_product_remove_slide">
                                 <div class="glyphicon glyphicon-remove">
@@ -573,75 +573,18 @@
                                 Green
                             </div>
                             <div class="cart_product_price_slide">
-                                Rs.785.00
+                                {{ "Rs. " + product.price }}
                             </div>
                             <div class="cart_product_size_slide">
-                                Size: 32
+                                {{ "Size:" + product.size }}
                             </div>
                             <div class="cart_product_quantity_slide">
-                                Quantity:2
+                                {{ "Quantity: " + product.quantity }}
                             </div>
 
 
                         </div>
                     </li>
-                    <li class="cart_list_slide">
-                        <div class="cart_image_slide">
-                            <img class="cart_product_icon" src="assets/images/p1.jpg">
-                        </div>
-                        <div class="cart_details_slide">
-                            <div class="cart_product_name_slide">
-                                Brand Print Slim Fit T-Shirt
-                            </div>
-                            <div class="cart_product_remove_slide">
-                                <div class="glyphicon glyphicon-remove">
-                                </div>
-                            </div>
-                            <div class="cart_product_colour_slide">
-                                Green
-                            </div>
-                            <div class="cart_product_price_slide">
-                                Rs.785.00
-                            </div>
-                            <div class="cart_product_size_slide">
-                                Size: 32
-                            </div>
-                            <div class="cart_product_quantity_slide">
-                                Quantity:2
-                            </div>
-
-
-                        </div>
-                    </li>
-                    <li class="cart_list_slide">
-                        <div class="cart_image_slide">
-                            <img class="cart_product_icon" src="assets/images/p1.jpg">
-                        </div>
-                        <div class="cart_details_slide">
-                            <div class="cart_product_name_slide">
-                                Brand Print Slim Fit T-Shirt
-                            </div>
-                            <div class="cart_product_remove_slide">
-                                <div class="glyphicon glyphicon-remove">
-                                </div>
-                            </div>
-                            <div class="cart_product_colour_slide">
-                                Colour: Green
-                            </div>
-                            <div class="cart_product_price_slide">
-                                Rs.785.00
-                            </div>
-                            <div class="cart_product_size_slide">
-                                Size: 32
-                            </div>
-                            <div class="cart_product_quantity_slide">
-                                Quantity:2
-                            </div>
-
-
-                        </div>
-                    </li>
-
 
                 </ul>
             </div>
@@ -649,11 +592,11 @@
 
             <div id="cart_subtotal_slide">
                 <div id="cart_subtotal_label_slide">Sub total</div>
-                <div id="cart_subtotal_value_slide">RS.765</div>
+                <div id="cart_subtotal_value_slide">{{ "Rs. " + price }}</div>
             </div>
             <div id="cart_total_slide">
                 <div id="cart_total_label_slide">Total</div>
-                <div id="cart_total_value_slide">RS.765</div>
+                <div id="cart_total_value_slide">{{ "Rs. " + price }}</div>
             </div>
             <a ui-sref="cart">
                 <div id="cart_showbag_button">
@@ -666,7 +609,6 @@
 
         <!-- Content -->
         <div id="content">
-
             <!-- Angular View - Navigation and Content -->
             <div ui-view></div>
 

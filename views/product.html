@@ -4,8 +4,8 @@
     <!-- Breadcrumbs -->
     <div id="product_breadcrumbs">
         <ol class="breadcrumb">
-            <li><a href="#/home">Home</a></li>
-            <li>{{product_category}}</li>
+            <li><a ui-sref="main_navigation.home">Home</a></li>
+            <li class="active"><a href="/{{product_type}}/{{product_category}}">{{product_category}}</a></li>
         </ol>
     </div>
     <!-- End Breadcrumbs -->
@@ -312,20 +312,21 @@
 
                             <div id="quickview_product_size">
                                 Size
-                                <select name="product_size">
+                                <select name="product_size" id="product_size">
                                     <option ng-repeat="size in quickview_product.size" value="{{ size.name }}">{{ size.name }}</option>
                                 </select>
                             </div>
 
                             <div id="quickview_product_quantity">
                                 Quantity:
-                                <select>
+                                <select id="product_quantity">
                                     <option ng-repeat="n in [] | range:quickview_product.stock" value="{{ $index }}">{{ $index + 1 }}</option>
                                 </select>
                             </div>
 
                             <div id="quickview_product_add">
-                                <button type="button" class="btn btn-default">ADD TO CART</button>
+                                <span hidden="true" id="hidden_id">{{ quickview_product.id }}</span>
+                                <button type="button" class="btn btn-default" id="addCart_quickview">ADD TO CART</button>
                                 <br />
                                 <br />
                                 <a href="#">ADD TO WISHLIST</a>
